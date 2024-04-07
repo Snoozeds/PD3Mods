@@ -13,8 +13,6 @@ def find_and_replace_size(hex_data, old_size_hex, new_size_hex):
     # Check if the replacement was successful
     if new_hex_data == hex_data:
         print("Replacement failed. Old size not replaced with new size.")
-    else:
-        print("Replacement successful.")
 
     return new_hex_data
 
