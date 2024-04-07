@@ -1,6 +1,3 @@
-## Requires json files of the original audio in a directory "json_files"
-## Requires the unmodded uexp.
-
 import os
 import json
 import binascii
@@ -11,7 +8,6 @@ def find_and_replace_size(hex_data, old_size_hex, new_size_hex):
         print("Old size not found in hex data.")
         return hex_data
 
-    # Replace old size with new size
     new_hex_data = hex_data.replace(old_size_hex, new_size_hex)
 
     # Check if the replacement was successful
@@ -52,20 +48,14 @@ def main():
                 new_size = os.path.getsize(ubulk_file)
                 
                 old_size_hex = hex(old_size)[2:].zfill(8)  # Remove "0x" prefix
-                old_size_hex = ''.join(reversed([old_size_hex[i:i+2] for i in range(0, len(old_size_hex), 2)]))  # Convert to little-endian
+                old_size_hex = ''.join(reversed([old_size_hex[i:i+2] for i in range(0, len(old_size_hex), 2)]))
                 new_size_hex = hex(new_size)[2:].zfill(8)  # Remove "0x" prefix
-                new_size_hex = ''.join(reversed([new_size_hex[i:i+2] for i in range(0, len(new_size_hex), 2)]))  # Convert to little-endian
-
-                print("Old size:", old_size_hex)
-                print("New size:", new_size_hex)
+                new_size_hex = ''.join(reversed([new_size_hex[i:i+2] for i in range(0, len(new_size_hex), 2)]))
 
                 # Open corresponding uexp file and replace size
                 with open(uexp_file, 'rb') as uexp:
                     hex_data = binascii.hexlify(uexp.read()).decode()
 
-                print("Old size hex in hex data:", old_size_hex in hex_data)
-
-                # Replace size in hex data
                 hex_data = find_and_replace_size(hex_data, old_size_hex, new_size_hex)
 
                 # Write back to uexp file
