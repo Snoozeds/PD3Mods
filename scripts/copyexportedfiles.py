@@ -61,8 +61,10 @@ def find_and_copy_files():
 
     for line in lines:
         line = line.strip()
-        if ' ' in line:
-            name, _id = line.split(maxsplit=1)
+        parts = line.split()
+        if len(parts) >= 2:
+            name = parts[0]
+            _id = parts[-1]
         else:
             name = None
             _id = line
