@@ -1,6 +1,6 @@
 # This script increases the volume of WAV audio files if their dBA level (loudness) is below a specified threshold.
 # If the dBA level is below the threshold, it increases the volume by the gain factor (4.0).
-#If the dBA level is above the threshold, it decreases the volume by the gain_decrease factor (2.0).
+# If the dBA level is above the threshold, it decreases the volume by the gain_decrease factor (2.0).
 # The modified audio is then saved back to the original file using ffmpeg. (I recommend backing up files in case something goes wrong.)
 # Ensure that ffmpeg is installed for this script to work or use an executable file in the same directory and change "ffmpeg" to "ffmpeg.exe".
 
